@@ -1,0 +1,19 @@
+<div class="form_container p-5 bg-light row d-flex justify-content-center align-items-center">
+    <form method="{{form.method}}" action="{{request.path}}" class="col-sm-6">
+        {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group p-2">
+                    <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+           x             </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" value="Submit" class="btn btn-success">Submit</button>
+    </form>
+</div>

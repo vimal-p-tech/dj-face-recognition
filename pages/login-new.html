@@ -1,0 +1,64 @@
+{% extends 'home.html' %}
+
+{% block title %}Login Alpha{% endblock %}
+
+{% block content %}
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+<style>
+    .log_text{
+    background-color:#408697;
+    color:white;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom:5%;
+    height:60px;
+    padding-top:10px;
+    box-shadow:  0 0 15px 5px rgba(0, 0, 0, 0.6);
+    border-bottom-left-radius:7px;
+    border-bottom-right-radius:7px;
+  }
+  .log{
+    margin-top:5%;
+    background-color:#353638;
+    margin-left:25%;
+    border-radius:7px;
+    box-shadow:  0 0 15px 1px rgba(0, 0, 0, 0.6);
+  }
+  </style>
+<div class="col-sm-6 log">
+    <div class="log_text col-sm-12">{{text}}</div>
+  <form class="form-horizontal col-sm-10" action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group p-2">
+                    <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                </div>
+            {% endfor %}
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn_">Log In</button>
+                </div>
+            </div>
+    </form>
+    <ul id="messages"></ul>
+</div>
+<script>
+    var ws = new WebSocket("ws://localhost:8080/ws");
+    
+    ws.onmessage = function(event) {
+        var message = event.data;
+        var node = document.createElement("li");
+        var textNode = document.createTextNode(message);
+        node.appendChild(textNode);
+        document.getElementById("messages").appendChild(node);
+    };
+</script>
+{% endblock %}

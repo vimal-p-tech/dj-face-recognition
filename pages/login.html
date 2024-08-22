@@ -1,0 +1,69 @@
+{% extends 'home.html' %}
+
+{% block title %}Login Alpha{% endblock %}
+
+{% block content %}
+<style>
+  .log_text{
+  background-color:#408697;
+  color:white;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom:5%;
+  height:60px;
+  padding-top:10px;
+  box-shadow:  0 0 15px 5px rgba(0, 0, 0, 0.6);
+  border-bottom-left-radius:7px;
+  border-bottom-right-radius:7px;
+}
+.log{
+  margin-top:5%;
+  background-color:#353638;
+  margin-left:25%;
+  border-radius:7px;
+  box-shadow:  0 0 15px 1px rgba(0, 0, 0, 0.6);
+}
+</style>
+
+<div class="col-sm-6 log">
+  <div class="log_text col-sm-12">{{text}}</div>
+<form class="form-horizontal col-sm-10" action="{% url 'login' %}" method="POST">
+  {%csrf_token%}
+
+
+  <div class="form-group">
+  
+    <div class="col-sm-10">
+      <input  type="text" class="form-control" name="username" placeholder="Enter Username">
+    </div>
+  </div>
+  
+  <div class="form-group">
+  
+    <div class="col-sm-10">
+      <input type="password" class="form-control" name="password" placeholder="Enter password">
+    </div>
+  </div>
+  
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn_">Log In</button>
+    </div>
+  </div>
+</form>
+<div>
+  {% for message in messages%}
+  {{message}}
+  {%endfor%}
+</div>
+</div>
+<img id="video_feed" src="" />
+    <script>
+        const socket = new WebSocket('ws://localhost:8000/ws/camera/');
+
+        socket.onmessage = function(e) {
+            document.getElementById('video_feed').src = 'data:image/jpeg;base64,' + e.data;
+        };
+    </script>
+{% endblock %}

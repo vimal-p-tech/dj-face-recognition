@@ -1,0 +1,22 @@
+<nav class="navbar navbar-inverse col-sm-12 fixed-top" style="box-shadow:  0 0 10px 2px rgba(0,12,0,0.6);">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand">Team Alpha</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><a href="{%url 'home'%}" >Home</a></li>
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated%} 
+        <li><a href="{%url 'logout'%}">Logout</a></li>
+        <li><svg class="bi bi-person-fill" width="2em" height="2em" viewBox="1 -2 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+        </svg></li> 
+        
+        
+        <li style="color:white;padding-top:13px;"> {{user.username}}</li>
+        {%endif%}
+      </ul> 
+    </div>
+  </nav>

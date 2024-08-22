@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head><title>{%block title%}Home page Alpha{%endblock%}</title>
+<style>
+body{
+  border:none;
+  margin:0px;
+  background-color: #dae3df;
+}
+.face1 img{
+  width:400px;
+  height:400px;
+}
+.face1 img{
+   box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+  border-radius:11px;
+  margin-top:10%;
+}
+.navbar-right,li{
+  padding-right:10px;
+}
+/*.log{
+  background-color:#353638;
+  margin-left:25%;
+  border-radius:7px;
+  box-shadow:  0 0 15px 1px rgba(0, 0, 0, 0.6);
+}
+.log_text{
+  background-color:#408697;
+  color:white;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom:5%;
+  height:60px;
+  padding-top:10px;
+  box-shadow:  0 0 15px 5px rgba(0, 0, 0, 0.6);
+  border-bottom-left-radius:7px;
+  border-bottom-right-radius:7px;
+}*/
+form{
+  background-color: #353638;
+  margin-left:14%;
+  
+  padding-top:20px;
+  
+}
+
+input[type=text],input[type=password],input[type=email]{
+  background-color: #353638;
+  border:none;
+  box-shadow:  0 0 15px -5px rgba(0, 0, 0, 0.6);
+}
+.btn_{
+  background-color: #353638;
+  width:150px;
+  height:40px;
+  border-radius:8px;
+  border-color: #408697;
+  outline:none;
+  font-size:20px;
+  color: #408697;
+  box-shadow:  0 0 15px 1px rgba(0, 0, 0, 0.6);
+  margin-left:10%;
+}
+.btn_:hover{
+  box-shadow:  0 0 15px 3px rgba(0, 0, 0, 0.6);
+}
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% load static %}
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">  
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>  
+</head>
+<body >
+  <nav class="navbar navbar-inverse" style="box-shadow:  0 0 10px 2px rgba(0,12,0,0.6);">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{%url 'home'%}">Team Alpha</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><a href="{%url 'home'%}">Home</a></li>
+        {% if not user.is_authenticated %}
+        <li><a href="{%url 'login'%}">Login</a></li>
+        {%endif%}
+        {% if not user.is_authenticated and not user.exists  %}
+        <li><a href="{%url 'register'%}">Register</a></li>
+        {%endif%}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated%} 
+        <li><a href="{%url 'logout'%}">Logout</a></li>
+        <li><svg class="bi bi-person-fill" width="2em" height="2em" viewBox="1 -2 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+        </svg></li> 
+        <li style="color:white;text-transform:uppercase;padding-top:13px;"> {{user.username}}</li>
+        {%endif%}
+      </ul> 
+    </div>
+  </nav>
+
+  <div class="col-sm-12">
+    
+    {%block content%}
+    {%endblock%}
+  </div>
+  </body>
+</html>

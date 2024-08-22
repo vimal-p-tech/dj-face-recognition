@@ -1,0 +1,86 @@
+{%extends 'home.html'%}
+{%block content%}
+
+<style>
+
+img{
+  border-radius:8px;
+  box-shadow:  0 0 15px -1px rgba(0, 0, 0, 0.6);
+
+  
+}
+.jumbotron{
+  background-color:#353638;
+  color: #408697;
+  box-shadow:  0 0 15px 2px rgba(0, 0, 0, 0.6);
+  
+  }
+  .column {
+  float: left;
+  margin-left:100px;
+  margin-bottom: 16px;
+  box-shadow:  0 0 15px 2px rgba(0, 0, 0, 0.6);
+  padding: 0 8px;
+  background-color:#353638;
+  border-radius:8px;
+}
+
+/* Display the columns below each other instead of side by side on small screens */
+
+
+/* Add some shadows to create a card effect */
+.card {
+  
+  
+  color: #408697 ;
+  height:500px;
+}
+
+/* Some left and right padding inside the container */
+.container {
+  padding: 0 16px;
+}
+
+
+/* Clear floats */
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+.backend{
+  width:100px;
+margin-left:25%;
+margin-top:-15%;
+}
+</style>
+
+   
+    <div class="jumbotron text-center">
+      
+        <h1>Team Alpha</h1>
+        <p>Smart Attendance System Using Facial Recognition</p>
+        <img src="media/img_sample/face_home.png">
+      </div>
+      </div>
+{%endblock%}

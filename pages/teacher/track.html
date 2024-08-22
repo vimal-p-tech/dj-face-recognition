@@ -1,0 +1,62 @@
+{%extends 'teacher/t_dash.html'%}
+{%block content%}
+{%load static%}
+<script type="text/javascript">
+function video(){
+  var pic="{%url 'track' %}"
+  document.getElementById('feed').src=pic;
+  
+
+}
+</script>
+<style>
+      
+    input[type=submit]{
+      margin-top: 15%;
+      background-color:#069fc5 ;
+      color:white;
+      font-size:22px;
+      padding-top:2px;
+    }
+    #se{
+      background-color:#353638 ;
+      outline: none;
+      border:none;
+      box-shadow:  0 0 15px -5px rgba(0, 0, 0, 0.6);
+    }
+    input[type=number]{
+      margin-top:10%;
+      background-color: #353638;
+  border:none;
+  box-shadow:  0 0 15px -5px rgba(0, 0, 0, 0.6);
+    }
+</style>
+
+<img  src="" id="feed" name="location">
+
+
+
+{%endblock%}
+
+{%block detail%}
+  <form class="form-horizontal col-md-6 col-sm-10"   method="post" action="{%url 'track' %}">
+      {%csrf_token%}
+    
+      <div class="form-group">
+        <div class="col-sm-10">
+          <input type="number" class="form-control" name="period" placeholder="No of Period">
+        </div>
+      </div>
+      <div class="form-group p-2">
+      <select name="subjects" class="form-control" id="se">
+        {%for option in options%}
+          <option value="{{option.id}}">{{option.sub_name}}</option>
+        {%endfor%}
+      </select>
+      </div>
+
+      <input type="submit"   class="form-control btn " value="Take Attendance"/>
+  </form>
+  
+{%endblock%}
+

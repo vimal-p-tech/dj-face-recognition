@@ -1,0 +1,13 @@
+{%extends 'student/s_dash.html'%}
+{%block content%}
+<script type="text/javascript">
+function video(){
+  var pic="{%url 'video_feed' %}"
+  document.getElementById('feed').src=pic;
+  
+
+}
+</script>
+<img alt="video feed" src="media/img_sample/face_home.png" id="feed">
+<button class="btn blue-gradient" onclick="video()">Capture</button>
+{%endblock%}
